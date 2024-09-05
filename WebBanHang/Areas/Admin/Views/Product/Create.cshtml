@@ -1,0 +1,75 @@
+﻿@model WebBanHang.Areas.Admin.ViewModels.CreateProductVM
+
+<form asp-action="Create" asp-area="Admin" asp-controller="Product" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="@Model.TenHang"></label>
+        <input asp-for="@Model.TenHang" class="form-control" />
+        <span asp-validation-for="@Model.TenHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.DonGiaHang"></label>
+        <input asp-for="@Model.DonGiaHang" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="@Model.DonGiaHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.MoTaNganHang"></label>
+        <textarea asp-for="@Model.MoTaNganHang" class="form-control"></textarea>
+        <span asp-validation-for="@Model.MoTaNganHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.ChiTietHang"></label>
+        <textarea asp-for="@Model.ChiTietHang" class="form-control"></textarea>
+        <span asp-validation-for="@Model.ChiTietHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.TenLoaiHang"></label>
+        <select asp-for="@Model.TenLoaiHang" asp-items="@ViewBag.MaLoai" class="form-control">
+            @* <option value="@Model.TenLoaiHang"></option> *@
+        </select>
+    </div>
+
+    @* <div class="form-group">
+    <label asp-for="@Model.TenLoaiHang"></label>
+    <div class="col-sm-8">
+    <select class="form-select" asp-for="@Model.TenLoaiHang">
+    <option value="Đồng hồ">Đồng hồ</option>
+    <option value="Laptop">Laptop</option>
+    <option value="Máy ảnh">Máy ảnh</option>
+    <option value="Điện thoại">Điện thoại</option>
+    <option value="Nước hoa">Nước hoa</option>
+    <option value="Trang sức">Trang sức</option>
+    <option value="Giày">Giày</option>
+    <option value="Vali">Vali</option>
+    </select>
+    </div>
+    </div> *@
+
+    @*     <div class="form-group">
+    <label asp-for="@Model.HinhHang"></label>
+    <input asp-for="@Model.HinhHang" class="form-control" />
+    <span asp-validation-for="@Model.HinhHang" class="text-danger"></span>
+    </div> *@
+
+
+    <div class="col-md-12 col-lg-6">
+        <div class="form-item w-100">
+            <label asp-for="@Model.HinhHang" class="form-label my-3">Hinh</label>
+            <input type="file" name="Hinh" class="form-control" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+</form>
+
+
+@* Đồng hồ
+Laptop
+Máy ảnh
+Điện thoại
+Nước hoa
+Trang sức
+Giày
+Vali *@

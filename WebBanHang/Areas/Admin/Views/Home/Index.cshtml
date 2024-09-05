@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebBanHang.ViewModels.HangHoaVM>
+
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Admin";
+}
+
+<a asp-area="Admin" asp-action="Create" asp-controller="Product">Create</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th scope="col">#</th> *@
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Edit</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @* <th scope="row">1</th> *@
+                <td>@item.TenHang</td>
+                <td class="col-md-6 col-lg-6 col-xl-4">
+                    <div class="fruite-img">
+                        <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHang">
+                            <img src="~/Hinh/HangHoa/@item.HinhHang" class="img-fluid w-100 rounded-top" alt="@item.TenHang">
+                        </a>
+                    </div>
+                </td>
+                <td>@item.DonGiaHang</td>
+                <td>@item.TenLoaiHang</td>
+                <td>@item.MoTaNganHang</td>
+                <td>
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@item.MaHang">Edit</a>
+                </td>
+                <td>
+                    <a method="post" asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-id="@item.MaHang">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

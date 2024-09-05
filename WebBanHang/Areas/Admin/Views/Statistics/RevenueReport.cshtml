@@ -1,0 +1,41 @@
+﻿@model WebBanHang.Areas.Admin.ViewModels.RevenueVM
+
+@{
+    ViewData["Title"] = "Báo cáo doanh thu";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-6 mb-4">Revenue Total</h1>
+            <div class="d-flex justify-content-between mb-4">
+                <h5 class="mb-0">Total: </h5>
+                <p class="mb-0">$@Model.TotalRevenue.ToString("N2")</p>
+            </div>
+        </div>
+    </div>
+    <form asp-action="RevenueReport" method="get">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="startDate">Ngày bắt đầu:</label>
+                <input type="date" class="form-control" id="startDate" name="startDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="endDate">Ngày kết thúc:</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Thống kê</button>
+            </div>
+        </div>
+    </form>
+
+    @if (Model.StartDate.HasValue && Model.EndDate.HasValue)
+    {
+        <div class="row">
+            <div class="col-12">
+                <h3>Doanh Thu từ @Model.StartDate.Value.ToShortDateString() đến @Model.EndDate.Value.ToShortDateString(): $@Model.SelectedPeriodRevenue.ToString("N2")</h3>
+            </div>
+        </div>
+    }
+</div>

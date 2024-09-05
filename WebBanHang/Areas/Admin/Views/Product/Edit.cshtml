@@ -1,0 +1,251 @@
+﻿@model WebBanHang.Areas.Admin.ViewModels.EditProductVM
+
+@{
+    // ViewData["Title"] = "Detail";
+
+}
+
+<!-- Single Page Header start -->
+@* <div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Shop Detail</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item active text-white">@Model.TenHang</li>
+    </ol>
+</div> *@
+
+<form asp-action="Edit" asp-area="Admin" asp-controller="Product" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.MaHang" />
+    @* <div class="form-group">
+    <label asp-for="@Model.MaHang"></label>
+    <input asp-for="@Model.MaHang" class="form-control" />
+    </div> *@
+
+    <div class="form-group">
+        <label asp-for="@Model.TenHang"></label>
+        <input asp-for="@Model.TenHang" class="form-control" />
+        <span asp-validation-for="@Model.TenHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.DonGiaHang"></label>
+        <input asp-for="@Model.DonGiaHang" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="@Model.DonGiaHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.MoTaNganHang"></label>
+        <textarea asp-for="@Model.MoTaNganHang" class="form-control"></textarea>
+        <span asp-validation-for="@Model.MoTaNganHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.ChiTietHang"></label>
+        <textarea asp-for="@Model.ChiTietHang" class="form-control"></textarea>
+        <span asp-validation-for="@Model.ChiTietHang" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.TenLoaiHang"></label>
+        <select asp-for="@Model.TenLoaiHang" asp-items="@ViewBag.MaLoai" class="form-control">
+            @* <option value="@Model.TenLoaiHang"></option> *@
+        </select>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-4 col-sm-8">
+            <img src="/Hinh/HangHoa/@ViewData["HinhHang"]" width="150" />
+        </div>
+    </div>
+
+    <div class="col-md-12 col-lg-6">
+        <div class="form-item w-100">
+            <label asp-for="@Model.HinhHang" class="form-label my-3">Hinh</label>
+            <input type="file" name="Hinh" class="form-control" />
+        </div>
+    </div>
+    @*
+=======
+@* 
+>>>>>>> 287f6f3997a76967b802e7afe197d42ea0b17354
+    <div class="form-group">
+    <label asp-for="@Model.SoLuongTon"></label>
+    <input asp-for="@Model.SoLuongTon" class="form-control" type="number" />
+    </div>
+
+    <div class="form-group">
+    <label asp-for="@Model.DiemDanhGiaHang"></label>
+    <input asp-for="@Model.DiemDanhGiaHang" class="form-control" type="number" />
+    </div> *@
+
+    <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
+</form>
+
+<!-- Single Page Header End -->
+<!-- Single Product Start -->
+@* <div class="container-fluid py-5 mt-5">
+    <div class="container py-5">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8 col-xl-9">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="border rounded">
+                            <a href="#">
+                                <img src="~/Hinh/HangHoa/@Model.HinhHang" class="img-fluid rounded" alt="@Model.TenHang">
+                            </a>
+                        </div>
+                    </div>
+                    <div class=" col-lg-6">
+                        <h4 class="fw-bold mb-3">@Model.TenHang</h4>
+                        <p class="mb-3">@Model.TenLoaiHang</p>
+                        <h5 class="fw-bold mb-3">$@Model.DonGiaHang</h5>
+                        <div class="d-flex mb-4">
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="mb-4">@Model.MoTaNganHang</p>
+                        <form asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.MaHang">
+                            <div class="input-group quantity mb-5" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border" type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control form-control-sm text-center border-0" value="1" name="quantity">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border" type="button">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Them vao gio hang</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-12">
+                        <nav>
+                            <div class="nav nav-tabs mb-3">
+                                <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
+                                        id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
+                                        aria-controls="nav-about" aria-selected="true">
+                                    Mo ta chi tiet
+                                </button>
+                                <button class="nav-link border-white border-bottom-0" type="button" role="tab"
+                                        id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
+                                        aria-controls="nav-mission" aria-selected="false">
+                                    Danh Gia
+                                </button>
+                            </div>
+                        </nav>
+                        <div class="tab-content mb-5">
+                            <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                @Model.ChiTietHang
+                            </div>
+                            <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+                                <div class="d-flex">
+                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <div class="">
+                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Jason Smith</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
+                                            words etc. Susp endisse ultricies nisi vel quam suscipit
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <div class="">
+                                        <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                        <div class="d-flex justify-content-between">
+                                            <h5>Sam Peters</h5>
+                                            <div class="d-flex mb-3">
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star text-secondary"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-dark">
+                                            The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
+                                            words etc. Susp endisse ultricies nisi vel quam suscipit
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="nav-vision" role="tabpanel">
+                                <p class="text-dark">
+                                    Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
+                                    amet diam et eos labore. 3
+                                </p>
+                                <p class="mb-0">
+                                    Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
+                                    Clita erat ipsum et lorem et sit
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="#">
+                        <h4 class="mb-5 fw-bold">Leave a Reply</h4>
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="border-bottom rounded">
+                                    <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="border-bottom rounded">
+                                    <input type="email" class="form-control border-0" placeholder="Your Email *">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="border-bottom rounded my-4">
+                                    <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-between py-3 mb-5">
+                                    <div class="d-flex align-items-center">
+                                        <p class="mb-0 me-3">Please rate:</p>
+                                        <div class="d-flex align-items-center" style="font-size: 12px;">
+                                            <i class="fa fa-star text-muted"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xl-3">
+                <div class="row g-4 fruite">
+                    <div class="col-lg-12">
+                        @await Html.PartialAsync("_TimKiemPanel")
+                        @await Component.InvokeAsync("MenuLoai")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Single Product End --> *@
+

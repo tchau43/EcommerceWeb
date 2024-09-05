@@ -1,0 +1,249 @@
+﻿@model IEnumerable<WebBanHang.ViewModels.CartItem>
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<!-- Modal Search End -->
+<!-- Single Page Header start -->
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Checkout</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item active text-white">Checkout</li>
+    </ol>
+</div>
+<!-- Single Page Header End -->
+<!-- Checkout Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <h1 class="mb-4">Billing details</h1>
+        <form asp-action="Checkout" asp-controller="Cart" method="post" id="checkoutForm">
+            <div class="row g-5">
+                <div class="col-md-12 col-lg-6 col-xl-7">
+                    <div class="form-check my-3">
+                        <input type="checkbox" class="form-check-input" id="GiongKhachHang" name="GiongKhachHang" value="true">
+                        <label class="form-check-label" for="GiongKhachHang">Giống Thông Tin Khách Hàng?</label>
+                    </div>
+                    <div class="form-item delivery-info">
+                        <label class="form-label my-3">Tên Người Nhận<sup>*</sup></label>
+                        <input type="text" class="form-control" name="FullName" placeholder="Nguyen Van A">
+                    </div>
+                    <div class="form-item delivery-info">
+                        <label class="form-label my-3">Địa Chỉ <sup>*</sup></label>
+                        <input type="text" class="form-control" name="Address" placeholder="So 1 Dai Co Viet">
+                    </div>
+                    <div class="form-item delivery-info">
+                        <label class="form-label my-3">Điện Thoại<sup>*</sup></label>
+                        <input type="text" class="form-control" name="PhoneNumber" placeholder="0123456789">
+                    </div>
+                    <div class="form-item mt-3">
+                        <textarea name="Note" class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Ghi Chú Với Shop"></textarea>
+                    </div>
+                    @* <div class="row g-0 text-center align-items-center justify-content-center pt-4">
+                    <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Đặt Hàng</button>
+                    </div> *@
+                    <div class="row g-0 text-center align-items-center justify-content-center pt-4">
+                        <div class="col-6">
+                            <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Đặt Hàng</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" id="payWithVisa" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Thanh Toán với Visa</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Products</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center mt-2">
+                                                <img src="~/Hinh/HangHoa/@item.HinhHang" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="@item.TenHang">
+                                            </div>
+                                        </th>
+                                        <td class="py-5">@item.TenHang</td>
+                                        <td class="py-5">$ @item.DonGiaHang</td>
+                                        <td class="py-5">@item.SoLuongHang</td>
+                                        <td class="py-5">$ @item.ThanhTien</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <th scope="row">
+                                    </th>
+                                    <td class="py-5"></td>
+                                    <td class="py-5"></td>
+                                    <td class="py-5">
+                                        <p class="mb-0 text-dark py-3">Subtotal</p>
+                                    </td>
+                                    <td class="py-5">
+                                        <div class="py-3 border-bottom border-top">
+                                            <p class="mb-0 text-dark">$ @Model.Sum(p => p.ThanhTien).ToString("#,##0.00")</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Checkout Page End -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#GiongKhachHang").change(function () {
+                if ($(this).prop("checked")) {
+                    $(this).val(true);
+                    $(".delivery-info").addClass("d-none");
+                } else {
+                    $(this).val(false);
+                    $(".delivery-info").removeClass("d-none");
+                }
+            });
+
+            $("#payWithVisa").click(function () {
+                // Thay đổi hành động của form và submit
+                $("#checkoutForm").attr("action", "/Cart/CheckOutStripe").submit();
+            });
+        });
+    </script>
+}
+
+
+
+
+@* @model IEnumerable<WebBanHang.ViewModels.CartItem>
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<!-- Modal Search End -->
+<!-- Single Page Header start -->
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Checkout</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+        <li class="breadcrumb-item active text-white">Checkout</li>
+    </ol>
+</div>
+<!-- Single Page Header End -->
+<!-- Checkout Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <h1 class="mb-4">Billing details</h1>
+        <form action="#">
+            <div class="row g-5">
+                <form asp-action="Checkout" asp-controller="Cart" method="post">
+                    <div class="col-md-12 col-lg-6 col-xl-7">
+                        <div class="form-check my-3">
+                            <input type="checkbox" class="form-check-input" id="GiongKhachHang" name="GiongKhachHang" value="0">
+                            <label class="form-check-label" for="GiongKhachHang">Giong Thong Tin Khach Hang?</label>
+                        </div>
+                        <div class="form-item delivery-info">
+                            <label class="form-label my-3">Ten Nguoi Nhan<sup>*</sup></label>
+                            <input type="text" class="form-control" name="FullName" placeholder="Nguyen Van A">
+                        </div>
+                        <div class="form-item delivery-info">
+                            <label class="form-label my-3">Dia Chi <sup>*</sup></label>
+                            <input type="text" class="form-control" name="Address" placeholder="So 1 Dai Co Viet">
+                        </div>
+                        <div class="form-item delivery-info">
+                            <label class="form-label my-3">Dien Thoai<sup>*</sup></label>
+                            <input type="text" class="form-control" name="PhoneNumber" placeholder="0123456789">
+                        </div>
+                        <div class="form-item mt-3">
+                            <textarea name="Note" class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Ghi Chu Voi Shop"></textarea>
+                        </div>
+                        <div class="row g-0 text-center align-items-center justify-content-center pt-4">
+                            <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Dat Hang</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-md-12 col-lg-6 col-xl-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Products</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center mt-2">
+                                                <img src="~/Hinh/HangHoa/@item.HinhHang" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="@item.TenHang">
+                                            </div>
+                                        </th>
+                                        <td class="py-5">@item.TenHang</td>
+                                        <td class="py-5">$ @item.DonGiaHang</td>
+                                        <td class="py-5">@item.SoLuongHang</td>
+                                        <td class="py-5">$ @item.ThanhTien</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <th scope="row">
+                                    </th>
+                                    <td class="py-5"></td>
+                                    <td class="py-5"></td>
+                                    <td class="py-5">
+                                        <p class="mb-0 text-dark py-3">Subtotal</p>
+                                    </td>
+                                    <td class="py-5">
+                                        <div class="py-3 border-bottom border-top">
+                                            <p class="mb-0 text-dark">$ @Model.Sum(p => p.ThanhTien).ToString("#,##0.00")</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Checkout Page End -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#GiongKhachHang").change(function () {
+                if ($(this).prop("checked")) {
+                    $(this).val(true);
+                    $(".delivery-info").addClass("d-none");
+                } else {
+                    $(this).val(false);
+                    $(".delivery-info").removeClass("d-none");
+
+                }
+            });
+        });
+    </script>
+} *@
+
+
+

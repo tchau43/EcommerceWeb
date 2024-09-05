@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WebBanHang.ViewModels.HangHoaVM>
+
+
+<h4>Co @Model.Count() San Pham</h4>
+@foreach (var item in Model)
+{
+    <div class="col-md-6 col-lg-6 col-xl-4">
+        <div class="rounded position-relative fruite-item">
+            <div class="fruite-img">
+                <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHang">
+                    <img src="~/Hinh/HangHoa/@item.HinhHang" class="img-fluid w-100 rounded-top" alt="@item.TenHang">
+                </a>
+            </div>
+            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHang">
+                    <h4>@item.TenHang</h4>
+                </a>
+                <p>@item.MoTaNganHang</p>
+                <div class="d-flex justify-content-between flex-lg-wrap">
+                    <p class="text-dark fs-5 fw-bold mb-0">$@item.DonGiaHang</p>
+                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.MaHang" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Them vao gio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
