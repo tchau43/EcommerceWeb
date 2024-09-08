@@ -1,6 +1,7 @@
 ﻿@model WebBanHang.Areas.Admin.ViewModels.RevenueVM
 
 @{
+    Layout = "_LayoutAdmin";
     ViewData["Title"] = "Báo cáo doanh thu";
 }
 
@@ -17,17 +18,51 @@
     <form asp-action="RevenueReport" method="get">
         <div class="row">
             <div class="col-md-4 mb-3">
-                <label for="startDate">Ngày bắt đầu:</label>
+                <label for="startDate">Start date:</label>
                 <input type="date" class="form-control" id="startDate" name="startDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
             </div>
             <div class="col-md-4 mb-3">
-                <label for="endDate">Ngày kết thúc:</label>
+                <label for="endDate">End date:</label>
                 <input type="date" class="form-control" id="endDate" name="endDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
             </div>
             <div class="col-md-4 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary w-100">Thống kê</button>
+                <button type="submit" class="btn btn-primary w-100">Statistics</button>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Revenue Chart</h3>
+                    <canvas id="revenueChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var ctx = document.getElementById('revenueChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'line', // You can change to 'bar' or other chart types
+                    data: {
+                        labels: @Html.Raw(Json.Serialize(Model.Labels)), // Dates (X-axis)
+                        datasets: [{
+                            label: 'Revenue',
+                            data: @Html.Raw(Json.Serialize(Model.RevenueData)), // Revenue (Y-axis)
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Optional: Fill color for the graph
+                            borderColor: 'rgba(75, 192, 192, 1)', // Line color
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true // Ensure the Y-axis starts from 0
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+
     </form>
 
     @if (Model.StartDate.HasValue && Model.EndDate.HasValue)
@@ -38,4 +73,6 @@
             </div>
         </div>
     }
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </div>

@@ -45,9 +45,7 @@
                         <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
                     </div>
                     <div class="top-link pe-2">
-                        <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
-                        <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
-                        <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+                        <a asp-controller="KhachHang" asp-action="Logout" class="nav-item nav-link"><small class="text-white ms-2">Log out</small></a>
                     </div>
                 </div>
             </div>
@@ -61,9 +59,9 @@
                         <div class="navbar-nav mx-auto">
                             @* <a href="index.html" class="nav-item nav-link active">Home</a> *@
                             @* <a asp-controller="Admin" asp-action="HangHoa" class="nav-item nav-link">Shop</a> *@
-                            <a asp-controller="KhachHang" asp-action="Logout" class="nav-item nav-link">Đăng Xuất</a>
-                            <a class="nav-link nav-item" asp-area="Admin" asp-controller="Statistics" asp-action="RevenueReport">Doanh Thu</a>
-                            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link">All</a>
+                            <a asp-area="Admin" asp-controller="Statistics" asp-action="RevenueReport" class="nav-link nav-item">Revenue</a>
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link">All Product</a>
+                            <a asp-area="Admin" asp-controller="User" asp-action="UserControl" class="nav-link">User Management</a>
 
 
                         </div>
@@ -72,9 +70,9 @@
 
                             @await Component.InvokeAsync("Cart")
 
-                            <a href="#" class="my-auto">
+                            @* <a href="#" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>
-                            </a>
+                            </a> *@
                         </div>
                     </div>
                 </nav>

@@ -46,9 +46,19 @@
                         <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
                     </div>
                     <div class="top-link pe-2">
-                        <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+                        @* <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
                         <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
-                        <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+                        <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a> *@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="KhachHang" asp-action="Logout" class="text-white"><small class="text-white ms-2">Log out</small></a>
+                        }
+                        else
+                        {
+                            <a asp-controller="KhachHang" asp-action="Login" class="text-white"><small class="text-white ms-2">Log in</small></a>
+                            <a>/</a>
+                            <a asp-controller="KhachHang" asp-action="DangKy" class="text-white"><small class="text-white ms-2">Register</small></a>
+                        }
                     </div>
                 </div>
             </div>
@@ -60,8 +70,7 @@
                     </button>
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
-                            @* <a href="index.html" class="nav-item nav-link active">Home</a> *@
-                            <a asp-controller="HangHoa" asp-action="Index" class="nav-item nav-link">Shop</a>
+                            @* <a asp-controller="HangHoa" asp-action="Index" class="nav-item nav-link">Shop</a>
 
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -72,19 +81,18 @@
                                     <a href="404.html" class="dropdown-item">404 Page</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a> *@
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
 
                             @await Component.InvokeAsync("Cart")
 
-                            <div class="dropdown">
+                            @* <div class="dropdown">
                                 <a href="#" class="my-auto dropdown-toggle" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-user fa-2x"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                                    ,
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <li><a class="dropdown-item" asp-controller="KhachHang" asp-action="Logout">Đăng Xuất</a></li>
@@ -95,7 +103,7 @@
                                         <li><a class="dropdown-item" asp-controller="KhachHang" asp-action="DangKy">Đăng Ký</a></li>
                                     }
                                 </ul>
-                            </div>
+                            </div> *@
                         </div>
                     </div>
                 </nav>

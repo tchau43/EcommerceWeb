@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebBanHang.Areas.Admin.ViewModels.UserVM>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="container">
+    <h2>User List</h2>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Password</th>
+                <th>Validity</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaKh</td>
+                    <td>@item.MatKhau</td>
+                    <td>@item.HieuLuc</td>
+                    <td>@item.VaiTro</td>
+                    <td>
+                        <a asp-area="Admin" asp-controller="User" asp-action="EditUser" asp-route-id="@item.MaKh">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
