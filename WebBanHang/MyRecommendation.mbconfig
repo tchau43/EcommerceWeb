@@ -1,0 +1,315 @@
+﻿{
+  "Scenario": "Recommendation",
+  "DataSource": {
+    "Type": "SQL",
+    "Version": 1,
+    "ColumnProperties": [
+      {
+        "ColumnName": "MaCT",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "MaHD",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "MaHH",
+        "ColumnPurpose": "Item",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "DonGia",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "SoLuong",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "GiamGia",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "TenHH",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "MaKH",
+        "ColumnPurpose": "User",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "NgayDat",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "DateTime",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "TongTien",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      }
+    ],
+    "ConnectionString": "Data Source=3812-0PC\\SQLEXPRESS;Initial Catalog=Hshop2023;Integrated Security=True;Trust Server Certificate=True",
+    "CommandString": "SELECT CAST([MaHH] as REAL), CAST([SoLuong] as REAL), CAST([MaKH] as NVARCHAR(MAX)) FROM [dbo].[vChiTietHoaDon]",
+    "DatabaseName": "Hshop2023",
+    "SelectedTableDbo": "dbo",
+    "TableName": "vChiTietHoaDon"
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "MatrixFactorization",
+        "Score": -0.51663435052412132,
+        "RuntimeInSeconds": 6.339,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4",
+          "e0": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e1": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e2": {
+            "LabelColumnName": "SoLuong",
+            "MatrixColumnIndexColumnName": "MaKH",
+            "MatrixRowIndexColumnName": "MaHH",
+            "ApproximationRank": 10,
+            "LearningRate": 0.20255689559583498,
+            "NumberOfIterations": 553,
+            "Quiet": true
+          },
+          "e3": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH"
+          },
+          "e4": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "MatrixFactorization",
+        "Score": -0.54101592451348024,
+        "RuntimeInSeconds": 3.507,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4",
+          "e0": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e1": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e2": {
+            "LabelColumnName": "SoLuong",
+            "MatrixColumnIndexColumnName": "MaKH",
+            "MatrixRowIndexColumnName": "MaHH",
+            "ApproximationRank": 10,
+            "LearningRate": 0.12984085442602233,
+            "NumberOfIterations": 312,
+            "Quiet": true
+          },
+          "e3": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH"
+          },
+          "e4": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "MatrixFactorization",
+        "Score": -0.57447158661568054,
+        "RuntimeInSeconds": 2.899,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4",
+          "e0": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e1": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e2": {
+            "LabelColumnName": "SoLuong",
+            "MatrixColumnIndexColumnName": "MaKH",
+            "MatrixRowIndexColumnName": "MaHH",
+            "ApproximationRank": 14,
+            "LearningRate": 0.1003069676019957,
+            "NumberOfIterations": 269,
+            "Quiet": true
+          },
+          "e3": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH"
+          },
+          "e4": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "MatrixFactorization",
+        "Score": -0.58678736757703365,
+        "RuntimeInSeconds": 1.274,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4",
+          "e0": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e1": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e2": {
+            "LabelColumnName": "SoLuong",
+            "MatrixColumnIndexColumnName": "MaKH",
+            "MatrixRowIndexColumnName": "MaHH",
+            "ApproximationRank": 11,
+            "LearningRate": 0.099906240124254558,
+            "NumberOfIterations": 116,
+            "Quiet": true
+          },
+          "e3": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH"
+          },
+          "e4": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "MatrixFactorization",
+        "Score": -0.61568544076349119,
+        "RuntimeInSeconds": 2.665,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4",
+          "e0": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e1": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e2": {
+            "LabelColumnName": "SoLuong",
+            "MatrixColumnIndexColumnName": "MaKH",
+            "MatrixRowIndexColumnName": "MaHH",
+            "ApproximationRank": 13,
+            "LearningRate": 0.11236415040401453,
+            "NumberOfIterations": 245,
+            "Quiet": true
+          },
+          "e3": {
+            "OutputColumnName": "MaKH",
+            "InputColumnName": "MaKH"
+          },
+          "e4": {
+            "OutputColumnName": "MaHH",
+            "InputColumnName": "MaHH"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "MapValueToKey",
+      "e1": "MapValueToKey",
+      "e2": "MatrixFactorization",
+      "e3": "MapKeyToValue",
+      "e4": "MapKeyToValue"
+    },
+    "Schema": "e0 * e1 * e2 * e3 * e4",
+    "MetricName": "RSquared",
+    "ModelFilePath": "D:\\Code\\CompileFile\\ASP.NetCore\\GR1\\EcommerceWeb\\WebBanHang\\MyRecommendation.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 5,
+  "TrainingOption": {
+    "Version": 2,
+    "Subsampling": false,
+    "Type": "RecommendationTrainingOption",
+    "TrainingTime": 60,
+    "LabelColumn": "SoLuong",
+    "UserIdColumn": "MaKH",
+    "ItemIdColumn": "MaHH",
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "CrossValidationValidationOption",
+      "NumberOfFolds": 5
+    }
+  }
+}
